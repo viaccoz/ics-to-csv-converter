@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICS → CSV Converter</title>
+  
+  <!-- Strict CSP -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; 
+                 script-src 'self' 'sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG' 'sha384-HU23+dcnTNa/+HyW/YcLmvy9yGWe3Uzh10JD/Eb+5/bWCiZKnb1blQogZHngVJs5' 'sha384-D/t0ZMqQW31H3az8ktEiNb39wyKnS82iFY52QPACM+IjKW3jDUhyIgh2PApRqJZs'; 
+                 style-src 'self';">
+
+  <!-- Core Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+   integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG"
+   crossorigin="anonymous"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.4.0/ical.min.js"
+   integrity="sha384-HU23+dcnTNa/+HyW/YcLmvy9yGWe3Uzh10JD/Eb+5/bWCiZKnb1blQogZHngVJs5"
+   crossorigin="anonymous"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"
+   integrity="sha384-D/t0ZMqQW31H3az8ktEiNb39wyKnS82iFY52QPACM+IjKW3jDUhyIgh2PApRqJZs"
+   crossorigin="anonymous"></script>
+
+  <!-- Local Assets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <h2>ICS → CSV Converter</h2>
+    <div class="dropzone" id="dropzone">
+      Drop .ics or .zip here or click
+      <input type="file" id="fileInput" hidden>
+    </div>
+    <div class="status" id="status"></div>
+    <br>
+    <button id="downloadBtn" disabled>Download CSV</button>
+  </div>
+
+  <div class="card">
+    <h3>Filter</h3>
+    <input id="filterText" placeholder="Search text">
+    <span id="count"></span>
+  </div>
+
+  <div class="card">
+    <h3>All Events</h3>
+    <table>
+      <thead>
+        <tr>
+          <th data-key="calendar">Calendar</th>
+          <th data-key="summary">Summary</th>
+          <th data-key="start">Start</th>
+          <th data-key="end">End</th>
+          <th data-key="location">Location</th>
+          <th data-key="recurrence">Recurrence</th>
+          <th data-key="description">Description</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
