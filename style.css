@@ -1,0 +1,136 @@
+body {
+  font-family: system-ui;
+  background: #f4f6fb;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+.dropzone {
+  border: 2px dashed #aaa;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.dropzone.dragover {
+  border-color: #007bff;
+  background: #eef6ff;
+}
+button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+button:disabled {
+  background: #ccc;
+}
+input {
+  padding: 8px;
+  margin: 5px;
+}
+.status {
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #fafafa;
+  cursor: pointer;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+td {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* --- Column tuning --- */
+
+/* Calendar (short) */
+td:nth-child(1),
+th:nth-child(1) {
+  white-space: nowrap;
+  max-width: 160px;
+}
+
+/* Summary (medium, allow wrap) */
+td:nth-child(2),
+th:nth-child(2) {
+  max-width: 240px;
+}
+
+/* Start / End (compact) */
+td:nth-child(3),
+td:nth-child(4),
+th:nth-child(3),
+th:nth-child(4) {
+  white-space: nowrap;
+  min-width: 140px;
+}
+
+/* Location */
+td:nth-child(5),
+th:nth-child(5) {
+  max-width: 200px;
+}
+
+/* Recurrence (can be long → clamp) */
+td:nth-child(6),
+th:nth-child(6) {
+  max-width: 260px;
+}
+
+/* Description (long → clamp nicely) */
+td:nth-child(7),
+th:nth-child(7) {
+  max-width: 320px;
+}
+
+/* --- Clamp long text with ellipsis --- */
+td:nth-child(6),
+td:nth-child(7) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Hover to reveal full content */
+td:hover {
+  overflow: visible;
+  white-space: normal;
+  background: #f9fbff;
+  z-index: 2;
+  position: relative;
+}
