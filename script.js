@@ -83,17 +83,15 @@ function applyFilter() {
     Object.values(r).some(v => String(v).toLowerCase().includes(q))
   );
 
-  filtered.sort((a, b) => {
-    let va = a[sortKey] || "";
-    let vb = b[sortKey] || "";
-
-    if (va instanceof Date) va = va.getTime();
-    if (vb instanceof Date) vb = vb.getTime();
-
-    return sortAsc ? (va > vb ? 1 : -1) : (va < vb ? 1 : -1);
-  });
-
   render();
+}
+
+function to_date(js_date) {
+  return js_date.toISOString().slice(0, 10);
+}
+
+function to_time(js_date) {
+  return js_date.toISOString().slice(11, 19);
 }
 
 function render() {
@@ -101,15 +99,23 @@ function render() {
 
   filtered.forEach(r => {
     const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${r.calendar}</td>
-      <td>${r.summary}</td>
-      <td>${r.start ? r.start.toLocaleString() : ""}</td>
-      <td>${r.end ? r.end.toLocaleString() : ""}</td>
-      <td>${r.location}</td>
-      <td>${r.recurrence}</td>
-      <td>${r.description}</td>
-    `;
+
+    function addCell(value) {
+      const td = document.createElement("td");
+      td.textContent = value ?? "";
+      return td;
+    }
+
+    tr.appendChild(addCell(r.calendar));
+    tr.appendChild(addCell(r.summary));
+    tr.appendChild(addCell(r.start ? to_date(r.start) : ""));
+    tr.appendChild(addCell(r.start ? to_time(r.start) : ""));
+    tr.appendChild(addCell(r.end ? to_date(r.end) : ""));
+    tr.appendChild(addCell(r.end ? to_time(r.end) : ""));
+    tr.appendChild(addCell(r.location));
+    tr.appendChild(addCell(r.recurrence));
+    tr.appendChild(addCell(r.description));
+
     tbody.appendChild(tr);
   });
 
@@ -118,13 +124,15 @@ function render() {
 
 downloadBtn.onclick = () => {
   const csv = Papa.unparse(filtered.map(r => ({
-    Calendar: r.calendar,
-    Summary: r.summary,
-    Start: r.start ? r.start.toISOString() : "",
-    End: r.end ? r.end.toISOString() : "",
-    Location: r.location,
-    Recurrence: r.recurrence,
-    Description: r.description
+    "Calendar": r.calendar,
+    "Summary": r.summary,
+    "Start date": r.start ? to_date(r.start) : "",
+    "Start time": r.start ? to_time(r.start) : "",
+    "End date": r.end ? to_date(r.end) : "",
+    "End time": r.end ? to_time(r.end) : "",
+    "Location": r.location,
+    "Recurrence": r.recurrence,
+    "Description": r.description
   })));
 
   const blob = new Blob([csv], { type: "text/csv" });
