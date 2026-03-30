@@ -8,7 +8,7 @@
   
   <!-- Strict CSP -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; 
-                 script-src 'self' 'sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG' 'sha384-HU23+dcnTNa/+HyW/YcLmvy9yGWe3Uzh10JD/Eb+5/bWCiZKnb1blQogZHngVJs5' 'sha384-D/t0ZMqQW31H3az8ktEiNb39wyKnS82iFY52QPACM+IjKW3jDUhyIgh2PApRqJZs'; 
+                 script-src 'self' 'sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG' 'sha384-6SU9o/kopjziIukGhxSpfo75dojAj0O1JWZ+Z/2FdC6rLs6pJvDmRntnUdMS7ht2' 'sha384-D/t0ZMqQW31H3az8ktEiNb39wyKnS82iFY52QPACM+IjKW3jDUhyIgh2PApRqJZs'; 
                  style-src 'self';">
 
   <!-- Core Libraries -->
@@ -16,8 +16,8 @@
    integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG"
    crossorigin="anonymous"></script>
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.4.0/ical.min.js"
-   integrity="sha384-HU23+dcnTNa/+HyW/YcLmvy9yGWe3Uzh10JD/Eb+5/bWCiZKnb1blQogZHngVJs5"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.5.0/ical.min.js"
+   integrity="sha384-6SU9o/kopjziIukGhxSpfo75dojAj0O1JWZ+Z/2FdC6rLs6pJvDmRntnUdMS7ht2"
    crossorigin="anonymous"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"
@@ -54,8 +54,10 @@
         <tr>
           <th data-key="calendar">Calendar</th>
           <th data-key="summary">Summary</th>
-          <th data-key="start">Start</th>
-          <th data-key="end">End</th>
+          <th data-key="start_date">Start date</th>
+          <th data-key="start_time">Start time</th>
+          <th data-key="end_date">End date</th>
+          <th data-key="end_time">End time</th>
           <th data-key="location">Location</th>
           <th data-key="recurrence">Recurrence</th>
           <th data-key="description">Description</th>
